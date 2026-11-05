@@ -1,0 +1,170 @@
+/* HR 캘린더 — 색·글꼴 변수. 원본 허브와 같은 검정·형광초록 조합. */
+:root {
+  --k: #000; --g: #33F15F; --g-hover: #2BDC54;
+  --bg: #F7F8F7; --card: #fff; --line: #E4E7E4; --line-2: #D7DBD7;
+  --text: #0B0B0B; --muted: #6B716B; --soft: #F0F2F0; --tag: #E6FCEB;
+  --side-hover: #121412; --side-on: #161916;
+  --radius: 12px; --shadow: 0 8px 24px rgba(0, 0, 0, .08); --ring: 0 0 0 3px rgba(51, 241, 95, .4);
+  --font: Pretendard, "Pretendard Variable", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  color-scheme: light;
+  accent-color: var(--k);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--font); font-size: 14px; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+button { font: inherit; }
+.boot { padding: 40px; color: var(--muted); }
+
+/* ---------- 큰 틀: 왼쪽 검정 사이드바 + 오른쪽 본문 ---------- */
+.shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: 100vh; }
+.side { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; gap: 4px; padding: 18px 12px; background: #000; color: #fff; }
+.brand { padding: 4px 10px 16px; font-size: 20px; font-weight: 900; letter-spacing: -.03em; }
+.brand small { display: block; margin-top: 2px; font-size: 11px; font-weight: 500; letter-spacing: 0; opacity: .7; }
+.nav-btn { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border: 0; border-radius: 10px;
+  background: transparent; color: #fff; font-size: 14px; text-align: left; text-decoration: none; cursor: pointer; }
+.nav-btn:hover { background: var(--side-hover); }
+.nav-btn.on { background: var(--g); color: #000; font-weight: 700; }
+.nav-btn .ico { width: 18px; height: 18px; }
+.side-foot { display: flex; align-items: center; gap: 8px; margin-top: auto; padding: 10px 12px; font-size: 12px; opacity: .85; }
+.avatar { display: grid; place-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--g); color: #000; font-size: 12px; font-weight: 800; flex: none; }
+.avatar.dim { background: rgba(255,255,255,.18); color: #fff; }
+.side-who { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+.side-who small { opacity: .6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.side-act { margin-left: auto; padding: 4px 8px; border: 1px solid rgba(255,255,255,.35); border-radius: 8px;
+  background: transparent; color: #fff; font: inherit; font-size: 11.5px; cursor: pointer; white-space: nowrap; }
+.side-act:hover { background: rgba(255,255,255,.12); }
+.main { padding: 22px 28px 48px; min-width: 0; }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.topbar h1 { margin: 0; font-size: 18px; font-weight: 800; letter-spacing: -.01em; }
+.mode-badge { padding: 3px 10px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 11.5px; color: var(--muted); background: #fff; }
+.card { padding: 18px 20px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+.lead-muted { margin: 0; font-size: 13px; color: var(--muted); }
+.sec-empty { padding: 20px; font-size: 13px; color: var(--muted); text-align: center; }
+.home-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.home-grid h3 { margin: 0 0 6px; font-size: 15px; }
+.home-grid p { margin: 0 0 12px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* ---------- 공통 부품 ---------- */
+.ico { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.chip { display: inline-grid; place-content: center; width: 34px; height: 34px; border-radius: 10px; background: var(--g); color: #000; flex: none; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 1px solid transparent; border-radius: 9px;
+  background: #fff; color: var(--text); font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer; }
+.btn.ghost { border-color: var(--line-2); }
+.btn.ghost:hover { background: var(--soft); }
+.btn.primary { background: var(--g); color: #000; }
+.btn.primary:hover { background: var(--g-hover); }
+.btn.dark { background: #000; color: #fff; }
+.btn.dark:hover { background: #1a1a1a; }
+.btn.danger { color: #C62828; border-color: #F1C4C4; }
+.btn.danger:hover { background: #FDECEC; }
+.btn.sm { height: 28px; padding: 0 10px; font-size: 12px; }
+.btn:disabled { opacity: .5; cursor: default; }
+.icon-btn { display: inline-grid; place-content: center; width: 30px; height: 30px; border: 1px solid var(--line-2); border-radius: 8px; background: #fff; color: var(--text); cursor: pointer; }
+.icon-btn:hover:enabled { background: var(--soft); }
+.icon-btn:disabled { opacity: .35; cursor: default; }
+:focus-visible { outline: none; box-shadow: var(--ring); }
+
+/* ---------- 달력 ---------- */
+.cal-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.cal-head h2 { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
+.cal-nav { display: flex; align-items: center; gap: 4px; }
+.cal-nav .btn { height: 30px; padding: 0 12px; font-size: 12.5px; }
+.cal-tools { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.cal-warn { display: flex; align-items: center; gap: 6px; margin: 0 0 12px; padding: 8px 12px;
+  border: 1px solid var(--line-2); border-radius: 10px; font-size: 12.5px; color: var(--muted); background: #fff; }
+.cal-warn .ico { width: 14px; height: 14px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); overflow: hidden; }
+.cal-dow { padding: 8px 0; background: #F4F6F4; font-size: 11.5px; font-weight: 700; text-align: center; color: #4A504A; }
+.cal-dow.sun { color: #C62828; }
+.cal-dow.sat { color: #1565C0; }
+.cal-day { min-height: 104px; padding: 6px 7px 8px; background: var(--card); cursor: pointer; }
+.cal-day:hover { background: #F7F9F7; }
+.cal-day.out { background: #FAFBFA; color: #B5BAB5; }
+.cal-day.today { box-shadow: inset 0 0 0 2px var(--k); }
+.cal-num { display: flex; align-items: baseline; gap: 5px; margin-bottom: 4px; font-size: 12px; font-weight: 700; }
+.cal-day.sun .cal-num { color: #C62828; }
+.cal-day.sat .cal-num { color: #1565C0; }
+.cal-day.out .cal-num { color: #B5BAB5; }
+.cal-holi { font-size: 10.5px; font-weight: 600; color: #C62828; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cal-items { display: flex; flex-direction: column; gap: 3px; }
+.cal-chip { display: flex; align-items: center; gap: 5px; width: 100%; padding: 2px 5px; border: 0; border-radius: 6px;
+  background: var(--soft); font-size: 11.5px; text-align: left; cursor: pointer; color: var(--text); }
+.cal-chip:hover { background: #E6EAE6; }
+.cal-chip.done { opacity: .5; text-decoration: line-through; }
+.cal-chip-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cal-dot { width: 8px; height: 8px; flex: none; border-radius: 50%; background: #616161; }
+.cal-more { padding-left: 5px; font-size: 10.5px; color: var(--muted); }
+.cal-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 14px; font-size: 11.5px; color: var(--muted); }
+.cal-leg-edit { margin-left: auto; }
+.cal-leg { display: inline-flex; align-items: center; gap: 5px; }
+
+/* ---------- 오른쪽 서랍(패널) ---------- */
+.backdrop { position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, .35); }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 41; display: flex; flex-direction: column; width: min(440px, 100vw);
+  background: #fff; box-shadow: -8px 0 30px rgba(0, 0, 0, .12); transform: translateX(100%); transition: transform .18s ease; }
+.drawer.open { transform: none; }
+.d-head { display: flex; align-items: center; gap: 10px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+.d-head h3 { flex: 1; margin: 0; font-size: 16px; font-weight: 800; }
+.d-body { flex: 1; padding: 18px; overflow: auto; }
+.d-foot { display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 14px 18px; border-top: 1px solid var(--line); }
+.d-foot .spacer { flex: 1; }
+.d-foot .lead-muted { flex: 1; }
+
+/* 폼 */
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.f-label { font-size: 12.5px; font-weight: 700; color: #333; }
+.f-help { font-size: 11.5px; color: var(--muted); line-height: 1.45; }
+input[type="text"], input[type="date"], select, textarea {
+  width: 100%; height: 38px; padding: 0 10px; border: 1px solid var(--line-2); border-radius: 9px; background: #fff; font: inherit; font-size: 13.5px; color: var(--text); }
+textarea { height: auto; padding: 8px 10px; resize: vertical; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { border-color: #000; }
+input[type="color"] { width: 38px; height: 38px; padding: 2px; border: 1px solid var(--line-2); border-radius: 9px; background: #fff; cursor: pointer; }
+.row { display: flex; gap: 8px; }
+.row > * { flex: 1; min-width: 0; }
+.form-error { margin: 0 0 12px; padding: 8px 10px; border-radius: 8px; background: #FDECEC; color: #C62828; font-size: 12.5px; }
+
+/* 하루 서랍의 일정 목록 */
+.u-list { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.u-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.u-main { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.u-title { font-size: 13.5px; font-weight: 600; }
+.u-sub { font-size: 11.5px; color: var(--muted); }
+.u-row.done .u-title { text-decoration: line-through; opacity: .5; }
+.u-row input[type="checkbox"] {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; flex: none; margin: 0;
+  display: inline-grid; place-content: center; border: 1.5px solid #B4B9B4; border-radius: 5px; background: #fff; cursor: pointer; }
+.u-row input[type="checkbox"]::before { content: ""; width: 10px; height: 10px; transform: scale(0); transition: transform .12s; background: var(--g);
+  clip-path: polygon(14% 48%, 0 62%, 38% 100%, 100% 22%, 86% 8%, 38% 72%); }
+.u-row input[type="checkbox"]:checked { border-color: var(--k); background: var(--k); }
+.u-row input[type="checkbox"]:checked::before { transform: scale(1); }
+.holi-note { margin: 0 0 12px; padding: 8px 12px; border-radius: 8px; background: #FDECEC; color: #C62828; font-size: 12.5px; font-weight: 600; }
+
+/* 분야 고치기 */
+.cat-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; padding: 8px; border: 1px solid var(--line); border-radius: 10px; }
+.cat-row input[type="text"] { flex: 1; }
+.cat-row .cal-dot { width: 10px; height: 10px; }
+.cat-tag { padding: 2px 7px; border-radius: 999px; background: var(--tag); font-size: 11px; color: #1B5E20; white-space: nowrap; }
+.set-add { margin-top: 10px; }
+
+/* 확인창·토스트 */
+.confirm { position: fixed; inset: 0; z-index: 50; display: grid; place-content: center; background: rgba(0, 0, 0, .35); }
+.confirm-box { width: min(380px, 90vw); padding: 20px; background: #fff; border-radius: 14px; box-shadow: var(--shadow); }
+.confirm-box h4 { margin: 0 0 8px; font-size: 15px; line-height: 1.4; }
+.confirm-box p { margin: 0 0 16px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+.confirm-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.toast { position: fixed; left: 50%; bottom: 28px; z-index: 60; padding: 10px 16px; border-radius: 10px; background: #000; color: #fff;
+  font-size: 13px; transform: translateX(-50%); opacity: 0; transition: opacity .15s; pointer-events: none; }
+.toast.show { opacity: 1; }
+
+/* 좁은 화면: 사이드바를 위로, 칩은 색 점만 */
+@media (max-width: 760px) {
+  .shell { grid-template-columns: 1fr; }
+  .side { position: static; height: auto; }
+  .main { padding: 14px; }
+  .cal-day { min-height: 72px; }
+  .cal-chip-text, .cal-holi { display: none; }
+  .cal-head { flex-wrap: wrap; }
+  .cal-tools { margin-left: 0; width: 100%; justify-content: flex-start; }
+}
