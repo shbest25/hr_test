@@ -105,6 +105,7 @@ function itemChip(store, data, it, refresh) {
   return el('button', {
     type: 'button',
     class: 'cal-chip' + (it.done ? ' done' : ''),
+    style: '--c:' + colorOf(data, it.category), // 분야 색을 CSS 변수로 넘겨 연한 배경과 왼쪽 띠에 쓴다
     title: labelOf(data, it.category) + ' · ' + it.title + (it.lead ? ' · 담당 ' + it.lead : '') + ' — ' + hint,
     onclick: async (e) => {
       e.stopPropagation();
@@ -182,7 +183,7 @@ function legend(store, data, refresh) {
     data.categories.map((c) => {
       const dot = el('span', { class: 'cal-dot' });
       dot.style.background = c.color;
-      return el('span', { class: 'cal-leg' }, dot, c.label);
+      return el('span', { class: 'cal-leg', style: '--c:' + c.color }, dot, c.label);
     }),
     data.can_edit_categories
       ? el('button', { type: 'button', class: 'btn ghost sm cal-leg-edit', onclick: () => openCategories(store, data, refresh) }, icon('palette'), '분야 고치기')
